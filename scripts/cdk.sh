@@ -3,6 +3,9 @@
 set -eo pipefail
 shopt -s nocasematch
 
+# PRROFILES
+ADMIN="DaveAdmin"
+
 # Console colour highlight codes
 DEFAULT_HIGHLIGHT="\e[0m"
 HIGHLIGHT_YELLOW="\e[33m"
@@ -40,8 +43,8 @@ function bootstrap() {
     local profile=$1
     local extra_flags=$2
     highlight green "running command:"
-    highlight yellow "cdk bootstrap --profile $profile $extra_flags"
-    # cdk bootstrap --profile $profile
+    highlight yellow "cdk bootstrap --region eu-west-2 --profile $profile $extra_flags"
+    cdk bootstrap --region "eu-west-2" --profile "$profile"
     printf "\n"
 }
 
@@ -55,19 +58,19 @@ function deploy() {
 
 # Admin for all
 case_one() {
-    bootstrap admin
-    deploy admin
+    bootstrap $ADMIN
+    deploy $ADMIN
 }
 
 # Admin for bootstrap only
 case_two() {
-    bootstrap admin
+    bootstrap $ADMIN
     deploy assume_only
 }
 
 #  Bootstrap with a passed policy
 case_three() {
-    bootstrap "admin" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess\""
+    bootstrap "$ADMIN" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess\""
     deploy assume_only
 }
 
