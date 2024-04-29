@@ -3,9 +3,12 @@
 set -eo pipefail
 shopt -s nocasematch
 
-# PRROFILES
+# PROFILES
 ADMIN="DaveAdmin"
 DEPLOYMENT="DaveDev"
+
+# POLICIES
+EXECUTION_POLICY_ARN=""
 
 # Console colour highlight codes
 DEFAULT_HIGHLIGHT="\e[0m"
@@ -43,19 +46,21 @@ function highlight() {
 function bootstrap() {
     local profile=$1
     local extra_flags=$2
+    local command="cdk bootstrap --region eu-west-2 --profile $profile $extra_flags"
     highlight green "running command:"
-    highlight yellow "cdk bootstrap --region eu-west-2 --profile $profile $extra_flags"
+    highlight yellow "$command"
     printf "\n\n\n"
-    cdk bootstrap --region "eu-west-2" --profile "$profile"
+    eval "$command"
     printf "\n"
 }
 
 function deploy() {
     local profile=$1
+    local command="cdk deploy --profile $profile"
     highlight green "running command:"
-    highlight yellow "cdk deploy --profile $profile"
+    highlight yellow "$command"
     printf "\n\n\n"
-    cdk deploy --profile "$profile"
+    eval "$command"
     printf "\n"
 }
 
@@ -73,20 +78,20 @@ case_two() {
 
 #  Bootstrap with a passed policy
 case_three() {
-    bootstrap "$ADMIN" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess\""
-    deploy assume_only
+    bootstrap "$ADMIN" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess,$EXECUTION_POLICY_ARN\""
+    deploy $DEPLOYMENT
 }
 
 #  Resticted bootstrap role
 case_four() {
     bootstrap "restricted" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess\""
-    deploy assume_only
+    deploy $DEPLOYMENT
 }
 
 #  Permissions boundary
 case_five() {
     bootstrap "restricted" "--custom-permissions-boundary developer-policy"
-    deploy assume_only
+    deploy $DEPLOYMENT
 }
 
 error() {
