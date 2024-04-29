@@ -8,7 +8,12 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "case_one": "bash -c 'scripts/cdk.sh CASE_ONE",
+    "case_two": "bash -c 'scripts/cdk.sh CASE_TWO",
+    "case_three": "bash -c 'scripts/cdk.sh CASE_THREE",
+    "case_four": "bash -c 'scripts/cdk.sh CASE_FOUR",
+    "case_five": "bash -c 'scripts/cdk.sh CASE_FIVE"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
