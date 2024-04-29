@@ -44,6 +44,7 @@ function bootstrap() {
     local extra_flags=$2
     highlight green "running command:"
     highlight yellow "cdk bootstrap --region eu-west-2 --profile $profile $extra_flags"
+    printf "\n\n\n"
     cdk bootstrap --region "eu-west-2" --profile "$profile"
     printf "\n"
 }
@@ -52,7 +53,8 @@ function deploy() {
     local profile=$1
     highlight green "running command:"
     highlight yellow "cdk deploy --profile $profile"
-    # cdk deploy --profile $profile
+    printf "\n\n\n"
+    cdk deploy --profile $profile
     printf "\n"
 }
 
