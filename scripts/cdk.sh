@@ -5,6 +5,7 @@ shopt -s nocasematch
 
 # PRROFILES
 ADMIN="DaveAdmin"
+DEPLOYMENT="DaveDev"
 
 # Console colour highlight codes
 DEFAULT_HIGHLIGHT="\e[0m"
@@ -54,7 +55,7 @@ function deploy() {
     highlight green "running command:"
     highlight yellow "cdk deploy --profile $profile"
     printf "\n\n\n"
-    cdk deploy --profile $profile
+    cdk deploy --profile "$profile"
     printf "\n"
 }
 
@@ -67,7 +68,7 @@ case_one() {
 # Admin for bootstrap only
 case_two() {
     bootstrap $ADMIN
-    deploy assume_only
+    deploy $DEPLOYMENT
 }
 
 #  Bootstrap with a passed policy
