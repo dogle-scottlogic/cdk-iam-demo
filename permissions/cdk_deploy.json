@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "SSM",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter"
+            ],
+            "Resource": [
+                "arn:aws:ssm:eu-west-2:<ACCOUNT_ID>:parameter/cdk-bootstrap/*/version"
+            ]
+        },
+        {
+            "Sid": "STS",
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-deploy-role-<ACCOUNT_ID>-eu-west-2",
+                "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-file-publishing-role-<ACCOUNT_ID>-eu-west-2",
+                "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-lookup-role-<ACCOUNT_ID>-eu-west-2"
+            ]
+        }
+    ]
+}
