@@ -6,6 +6,7 @@ shopt -s nocasematch
 # PROFILES
 ADMIN="DaveAdmin"
 DEPLOYMENT="DaveDev"
+OPS="DaveOps"
 
 # POLICIES
 EXECUTION_POLICY_ARN=""
@@ -84,13 +85,13 @@ case_three() {
 
 #  Resticted bootstrap role
 case_four() {
-    bootstrap "restricted" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess\""
+    bootstrap "$OPS" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess,$EXECUTION_POLICY_ARN\""
     deploy $DEPLOYMENT
 }
 
 #  Permissions boundary
 case_five() {
-    bootstrap "restricted" "--custom-permissions-boundary developer-policy"
+    bootstrap "$OPS" "--custom-permissions-boundary developer-policy"
     deploy $DEPLOYMENT
 }
 
