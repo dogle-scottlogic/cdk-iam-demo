@@ -20,6 +20,7 @@
             "Resource": [
                 "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-deploy-role-<ACCOUNT_ID>-eu-west-2",
                 "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-file-publishing-role-<ACCOUNT_ID>-eu-west-2",
+                "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-image-publishing-role-<ACCOUNT_ID>-eu-west-2",
                 "arn:aws:iam::<ACCOUNT_ID>:role/cdk-*-lookup-role-<ACCOUNT_ID>-eu-west-2"
             ]
         }

@@ -91,7 +91,7 @@ case_four() {
 
 #  Permissions boundary
 case_five() {
-    bootstrap "$OPS" "--custom-permissions-boundary CDKExecute"
+    bootstrap "$OPS" "--cloudformation-execution-policies \"arn:aws:iam::aws:policy/AWSLambda_FullAccess,$EXECUTION_POLICY_ARN\" --custom-permissions-boundary CDKPermissionBoundary"
     deploy $DEPLOYMENT
 }
 

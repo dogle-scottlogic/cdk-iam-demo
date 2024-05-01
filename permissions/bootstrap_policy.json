@@ -5,6 +5,7 @@
             "Action": [
                 "cloudformation:CreateChangeSet",
                 "cloudformation:DeleteStack",
+                "cloudformation:DeleteChangeSet",
                 "cloudformation:DescribeChangeSet",
                 "cloudformation:DescribeStackEvents",
                 "cloudformation:DescribeStacks",
@@ -24,7 +25,8 @@
                 "iam:DetachRolePolicy",
                 "iam:DeleteRolePolicy",
                 "iam:PutRolePolicy",
-                "iam:TagRole"
+                "iam:TagRole",
+                "iam:PutRolePermissionsBoundary"
             ],
             "Effect": "Allow",
             "Resource": [
