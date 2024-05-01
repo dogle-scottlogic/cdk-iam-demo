@@ -91,7 +91,7 @@ case_four() {
 
 #  Permissions boundary
 case_five() {
-    bootstrap "$OPS" "--custom-permissions-boundary developer-policy"
+    bootstrap "$OPS" "--custom-permissions-boundary CDKExecute"
     deploy $DEPLOYMENT
 }
 
